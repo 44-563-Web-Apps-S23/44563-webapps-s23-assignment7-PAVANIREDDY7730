@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>React page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <h2>Speed check by Pavani Karumuri</h2>
+
+  <div id="target"> Your time </div>
+  <button type="button" class="btn btn-success" onclick="startTime()">Start Timer</button>
+  <div id="counter"> Count </div>
+  <button type="button" class="btn btn-danger" onclick="recordTime()"> React</button>
+  
+  <p id="countdown"></p>
+  
+  <script> 
+  var reactTime
+  randomTimer=getRandomInt(2,10)
+  function recordTime(){
+    reactTime=undefined;
+    reactTime= Date.now();
+    console.log(reactTime);
+  }
+  var t=0;
+  
+  function startTime(){
+    document.getElementById("target").innerHTML="Yourtime"
+    randomTimer=getRandomInt(2,10)
+    for( t=0;t<randomTimer;t++){
+        setTime(t);  
+    }
+   function setTime(t)
+   {
+        setTimeout(()=>{document.getElementById('countdown').innerHTML=t;},(randomTimer-t)*1000);
+    }
+    ( () => {
+        console.log("Entered anononymouse fun");
+         if(reactTime==undefined){
+            console.log("entered if is the");
+            document.getElementById('target').innerHTML="Too Slow";
+         }
+         else{
+            console.log("entered else other");
+            let endTime;
+            endTime=Date.now();
+            console.log("endtime is given by"+endTime);
+            let temp=endTime-reactTime;
+            console.log(temp);
+            document.getElementById('target').innerHTML="Time was "+temp;
+         }
+        })();
+  }
+  function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            value = Math.floor(Math.random() * (max - min) + min);
+
+            return value
+        }
+  
+  </script>
+
+</body>
+</html>
